@@ -25,11 +25,15 @@
             background-color: var(--white);
             color: var(--text);
             line-height: 1.8;
+            overflow-x: hidden; /* Prevents horizontal scroll on mobile */
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 30px; }
-        section { padding: 40px 0; }
-        h2 { font-family: 'Playfair Display', serif; color: var(--charcoal); font-size: clamp(2rem, 4vw, 2.8rem); text-align: center; margin-bottom: 50px; }
+        
+        /* Reduced padding to fix the "huge gap" issue */
+        section { padding: 80px 0; }
+        
+        h2 { font-family: 'Playfair Display', serif; color: var(--charcoal); font-size: clamp(1.8rem, 4vw, 2.8rem); text-align: center; margin-bottom: 50px; }
         h3 { font-family: 'Playfair Display', serif; color: var(--charcoal); }
 
         /* --- CSS LOGO DESIGN --- */
@@ -50,7 +54,7 @@
 
         .logo-letters {
             font-family: 'Playfair Display', serif;
-            font-size: 100px;
+            font-size: clamp(65px, 10vw, 100px); /* Responsive Logo size */
             font-weight: 700;
             line-height: 1;
             letter-spacing: -5px;
@@ -75,7 +79,7 @@
         .bar-text {
             color: var(--white);
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 12px;
+            font-size: clamp(8px, 1.5vw, 12px); /* Responsive bar text */
             font-weight: 600;
             letter-spacing: 5px;
             text-transform: uppercase;
@@ -93,17 +97,17 @@
 
         /* --- HERO SECTION --- */
         .hero {
-            min-height: 90vh;
+            min-height: 85vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 120px 0 100px;
+            padding: 100px 0 80px;
             background: linear-gradient(180deg, var(--soft-champagne) 0%, #ffffff 100%);
         }
 
         .hero h2 {
-            font-size: clamp(2.2rem, 6vw, 4rem);
+            font-size: clamp(1.8rem, 6vw, 4rem);
             font-weight: 400;
             font-style: italic;
             margin-bottom: 40px;
@@ -114,7 +118,7 @@
 
         .cta-btn {
             display: inline-block;
-            padding: 20px 50px;
+            padding: 18px 45px;
             background: var(--charcoal);
             color: white;
             text-decoration: none;
@@ -132,7 +136,7 @@
         .about-section { background: #fffaf9; }
         .about-header { max-width: 850px; margin: 0 auto 60px; text-align: center; }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .about-card { background: white; padding: 50px; border: 1px solid rgba(197, 160, 89, 0.1); }
+        .about-card { background: white; padding: 40px; border: 1px solid rgba(197, 160, 89, 0.1); }
         .about-list { list-style: none; margin-top: 20px; }
         .about-list li { margin-bottom: 15px; padding-left: 30px; position: relative; }
         .about-list li::before { content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900; color: var(--gold); position: absolute; left: 0; font-size: 0.9rem; }
@@ -141,7 +145,7 @@
         .diff-item strong { color: var(--charcoal); font-family: 'Playfair Display', serif; font-size: 1.2rem; display: block; margin-bottom: 5px; }
 
         /* --- SUCCESS STORIES --- */
-        .stories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .stories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .story-card {
             background: #fffaf9;
             padding: 50px 40px;
@@ -153,77 +157,88 @@
         .story-card i.quote-icon { color: var(--gold); font-size: 1.5rem; margin-bottom: 25px; display: block; opacity: 0.6; }
         .story-text { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-style: italic; color: var(--charcoal); }
 
-/* --- ACCORDION UI REFINEMENT --- */
-.program-card { 
-    background: white; 
-    margin-bottom: 30px; 
-    border: 1px solid rgba(197, 160, 89, 0.15); 
-    transition: 0.3s; 
-    cursor: pointer;
-    border-radius: 4px;
-}
+        /* --- ACCORDION UI REFINEMENT --- */
+        .program-card { 
+            background: white; 
+            margin-bottom: 25px; 
+            border: 1px solid rgba(197, 160, 89, 0.15); 
+            transition: 0.3s; 
+            cursor: pointer;
+            border-radius: 4px;
+        }
 
-.program-header { 
-    padding: 40px 50px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-}
+        .program-header { 
+            padding: 35px 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
 
-.program-details { 
-    max-height: 0; 
-    padding: 0 50px; 
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
-    background: #fffcfb; 
-    opacity: 0; 
-    overflow: hidden; 
-}
+        .program-details { 
+            max-height: 0; 
+            padding: 0 40px; 
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+            background: #fffcfb; 
+            opacity: 0; 
+            overflow: hidden; 
+        }
 
-.program-card.active .program-details { 
-    max-height: 1200px; 
-    padding: 10px 50px 50px; 
-    opacity: 1; 
-    border-top: 1px solid rgba(197, 160, 89, 0.05); 
-}
+        .program-card.active .program-details { 
+            max-height: 1500px; 
+            padding: 10px 40px 50px; 
+            opacity: 1; 
+            border-top: 1px solid rgba(197, 160, 89, 0.05); 
+        }
 
-.program-grid { 
-    display: grid; 
-    grid-template-columns: 1fr 1.2fr; 
-    gap: 60px; 
-    margin-top: 30px; 
-}
+        .program-meta { 
+            display: grid; 
+            grid-template-columns: 1fr 1.2fr; 
+            gap: 40px; 
+            margin-top: 30px; 
+        }
 
-.testimonial-box { 
-    border-left: 2px solid var(--gold); 
-    padding-left: 25px; 
-    margin-bottom: 30px; 
-}
+        .testimonial-box { 
+            border-left: 2px solid var(--gold); 
+            padding-left: 25px; 
+            margin-bottom: 30px; 
+        }
 
-.testimonial-box p { 
-    font-style: italic; 
-    font-family: 'Playfair Display', serif; 
-    font-size: 1.1rem; 
-    color: var(--charcoal); 
-}
-.events-grid { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 30px; 
-}
+        .testimonial-box p { 
+            font-style: italic; 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.1rem; 
+            color: var(--charcoal); 
+        }
 
-.event-card { 
-    background: #fffaf9; 
-    padding: 50px; 
-    text-align: center; 
-    border: 1px solid transparent; 
-    transition: 0.3s; 
-}
+        .testimonial-box span {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
 
-.event-card:hover { 
-    background: white; 
-    border-color: var(--gold); 
-    transform: translateY(-5px); 
-}
+        .events-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 30px; 
+        }
+
+        .event-card { 
+            background: #fffaf9; 
+            padding: 40px; 
+            text-align: center; 
+            border: 1px solid transparent; 
+            transition: 0.3s; 
+        }
+
+        .event-card:hover { 
+            background: white; 
+            border-color: var(--gold); 
+            transform: translateY(-5px); 
+        }
+
         /* --- FOUNDER SECTION --- */
         .poster-container { max-width: 900px; margin: 0 auto; text-align: center; }
         .poster-container img { width: 100%; height: auto; border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
@@ -238,7 +253,7 @@
         .footer-grid {
             display: grid;
             grid-template-columns: 1.5fr 1fr;
-            gap: 80px;
+            gap: 60px;
             margin-bottom: 60px;
         }
 
@@ -256,6 +271,7 @@
             font-weight: 600;
             letter-spacing: 1px;
             transition: 0.3s;
+            text-align: center;
         }
         .footer-cta:hover { background: var(--white); color: var(--charcoal); border-color: white; }
         .footer-cta.gold { background: var(--gold); border-color: var(--gold); }
@@ -275,12 +291,32 @@
             opacity: 0.5;
             letter-spacing: 1px;
         }
+
+        /* --- MOBILE MEDIA QUERIES (Fixes the screenshot issues) --- */
         @media (max-width: 768px) {
-            .about-grid { grid-template-columns: 1fr; }
-            .logo-letters { font-size: 75px; }
-            .logo-bar { height: 20px; }
-            .bar-text { font-size: 10px; letter-spacing: 3px; }
-            .program-header { flex-direction: column; text-align: center; gap: 15px; }
+            section { padding: 50px 0; }
+            
+            .about-grid, 
+            .events-grid, 
+            .footer-grid, 
+            .program-meta { 
+                grid-template-columns: 1fr; /* Stacks all 2-column sections to 1 column */
+                gap: 30px; 
+            }
+
+            .logo-bar { width: 140%; } /* Widens the black bar relative toHA HA text on small screens */
+
+            .program-header { flex-direction: column; text-align: center; gap: 15px; padding: 30px 20px; }
+            .program-details { padding: 0 20px; }
+            .program-card.active .program-details { padding: 10px 20px 40px; }
+
+            .footer-brand h2 { text-align: center; font-size: 1.8rem; }
+            .footer-brand p { text-align: center; margin: 0 auto 30px; }
+            .footer-socials { justify-content: center; }
+            .footer-bottom { flex-direction: column; text-align: center; gap: 15px; }
+
+            .about-header h3 { font-size: 1.6rem; }
+            .about-card { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -308,42 +344,44 @@
     <section class="about-section" id="about">
         <div class="container">
             <div class="about-header">
-                <h2>About HerAmbition</h2>
+                <h2 style="letter-spacing: 4px; color: var(--gold); font-size: 0.9rem; margin-bottom: 10px;">HERAMBITION</h2>
+                <h3 style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.2rem; color: var(--charcoal); margin-bottom: 30px;">Where Ambition Becomes Strategy.</h3>
                 <p>HerAmbition is a purpose-driven platform created to help women move from uncertainty to clarity — from potential to purposeful action. Founded in 2026, we design structured, high-impact programs that integrate career strategy, identity alignment, and leadership growth.</p>
             </div>
 
             <div class="about-grid">
-    <div class="about-card" style="display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-            <h3>Our Focus</h3>
-            <ul class="about-list">
-                <li>Strengthening professional positioning</li>
-                <li>Navigating career transitions with structure</li>
-                <li>Building visibility and influence</li>
-                <li>Growing sustainable businesses</li>
-                <li>Leading without compromising values</li>
-            </ul>
-        </div>
-        <div style="margin-top: 30px;">
-            <a href="https://whatsapp.com/channel/0029VbCNrLDATRSpqmGnit0M" class="cta-btn" style="padding: 12px 30px; font-size: 0.75rem; width: 100%; text-align: center;">Join the Community</a>
-        </div>
-    </div>
+                <div class="about-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3>Our Focus</h3>
+                        <ul class="about-list">
+                            <li>Strengthening professional positioning</li>
+                            <li>Navigating career transitions with structure</li>
+                            <li>Building visibility and influence</li>
+                            <li>Growing sustainable businesses</li>
+                            <li>Leading without compromising values</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <a href="https://whatsapp.com/channel/0029VbCNrLDATRSpqmGnit0M" class="cta-btn" style="padding: 12px 30px; font-size: 0.75rem; width: 100%; text-align: center;">Join our Focus Group</a>
+                    </div>
+                </div>
 
-    <div class="about-card" style="display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-            <h3>Who It’s For</h3>
-            <ul class="about-list">
-                <li>Working professionals ready for their next level</li>
-                <li>Women returning to work after a break</li>
-                <li>Entrepreneurs building early-stage businesses</li>
-                <li>Women seeking clarity and structured growth</li>
-            </ul>
-        </div>
-        <div style="margin-top: 30px;">
-            <a href="https://whatsapp.com/channel/0029VbCNrLDATRSpqmGnit0M" class="cta-btn" style="padding: 12px 30px; font-size: 0.75rem; width: 100%; text-align: center;">Join the Community</a>
-        </div>
-    </div>
-</div>
+                <div class="about-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3>Who It’s For</h3>
+                        <ul class="about-list">
+                            <li>Working professionals ready for their next level</li>
+                            <li>Women returning to work after a break</li>
+                            <li>Entrepreneurs building early-stage businesses</li>
+                            <li>Women seeking clarity and structured growth</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <a href="https://whatsapp.com/channel/0029VbCNrLDATRSpqmGnit0M" class="cta-btn" style="padding: 12px 30px; font-size: 0.75rem; width: 100%; text-align: center;">Join the Community</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="diff-grid">
                 <div class="diff-item"><strong>Structured Frameworks</strong><p><small>Not surface-level motivation</small></p></div>
                 <div class="diff-item"><strong>High-Trust Space</strong><p><small>Psychologically safe environments</small></p></div>
@@ -373,149 +411,149 @@
         </div>
     </section>
 
-   <section id="programs">
-    <div class="container">
-        <h2>OUR PROGRAMS</h2>
+    <section id="programs">
+        <div class="container">
+            <h2>OUR PROGRAMS</h2>
 
-        <div class="program-card" onclick="toggleProgram(this)">
-            <div class="program-header">
-                <div>
-                    <span style="color:var(--gold); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;">01. CAREER STRATEGY</span>
-                    <h3>The Becoming Program</h3>
-                    <p>For women feeling stuck, plateaued, or uncertain about their next move.</p>
+            <div class="program-card" onclick="toggleProgram(this)">
+                <div class="program-header">
+                    <div>
+                        <span style="color:var(--gold); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;">01. CAREER STRATEGY</span>
+                        <h3>The Becoming Program</h3>
+                        <p>For women feeling stuck, plateaued, or uncertain about their next move.</p>
+                    </div>
+                    <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
                 </div>
-                <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
+                <div class="program-details">
+                    <div class="program-meta">
+                        <div>
+                            <strong>Focus:</strong>
+                            <ul class="about-list">
+                                <li>Career direction mapping</li>
+                                <li>Strength & positioning analysis</li>
+                                <li>Promotion readiness strategy</li>
+                                <li>Confidence-building frameworks</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong>What Participants Say:</strong>
+                            <div class="testimonial-box">
+                                <p>"I finally feel in control of my progression. This program helped me map my career with clarity."</p>
+                                <span>— Corporate Professional</span>
+                            </div>
+                            <div class="testimonial-box">
+                                <p>"The promotion readiness framework changed how I position myself in leadership meetings."</p>
+                                <span>— Senior Executive</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://forms.gle/TqjPJurNRZNyhiY96" class="cta-btn" style="margin-top: 30px;">Apply Now</a>
+                </div>
             </div>
-            <div class="program-details">
-                <div class="program-meta">
+
+            <div class="program-card" onclick="toggleProgram(this)">
+                <div class="program-header">
                     <div>
-                        <strong>Focus:</strong>
-                        <ul class="program-list">
-                            <li>Career direction mapping</li>
-                            <li>Strength & positioning analysis</li>
-                            <li>Promotion readiness strategy</li>
-                            <li>Confidence-building frameworks</li>
-                        </ul>
+                        <span style="color:var(--gold); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;">02. LEADERSHIP</span>
+                        <h3>The Exclusive</h3>
+                        <p>For women stepping into leadership or preparing for it.</p>
                     </div>
+                    <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="program-details">
+                    <div class="program-meta">
+                        <div>
+                            <strong>Focus:</strong>
+                            <ul class="about-list">
+                                <li>Executive presence</li>
+                                <li>Communication & authority</li>
+                                <li>Managing upward & stakeholders</li>
+                                <li>Navigating workplace dynamics</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong>What Participants Say:</strong>
+                            <div class="testimonial-box">
+                                <p>"The communication frameworks helped me lead with authority without feeling aggressive."</p>
+                                <span>— Team Lead</span>
+                            </div>
+                            <div class="testimonial-box">
+                                <p>"Practical tools to manage difficult conversations confidently. It was structured."</p>
+                                <span>— Operations Manager</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://forms.gle/TqjPJurNRZNyhiY96" class="cta-btn" style="margin-top: 30px;">Apply Now</a>
+                </div>
+            </div>
+
+            <div class="program-card" onclick="toggleProgram(this)">
+                <div class="program-header">
                     <div>
-                        <strong>What Participants Say:</strong>
-                        <div class="testimonial-box">
-                            <p>"I was constantly doubting my next step. This program helped me map my career with clarity and confidence. I finally feel in control of my progression."</p>
-                            <span>— Corporate Professional</span>
+                        <span style="color:var(--gold); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;">03. ENTREPRENEURSHIP</span>
+                        <h3>The FoundHer Circle</h3>
+                        <p>The Founder’s Chamber - For women entrepreneurs building brands or platforms.</p>
+                    </div>
+                    <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="program-details">
+                    <div class="program-meta">
+                        <div>
+                            <strong>Focus:</strong>
+                            <ul class="about-list">
+                                <li>Founder positioning</li>
+                                <li>Strategic decision-making</li>
+                                <li>Visibility & brand authority</li>
+                                <li>Sustainable growth structure</li>
+                            </ul>
                         </div>
-                        <div class="testimonial-box">
-                            <p>"The promotion readiness framework changed how I position myself in reviews and leadership meetings. I now think strategically about my growth."</p>
-                            <span>— Senior Executive</span>
+                        <div>
+                            <strong>What Founders Say:</strong>
+                            <div class="testimonial-box">
+                                <p>"The Founder Circle pushed me to think long-term instead of reacting daily. decisions are rooted in strategy."</p>
+                                <span>— Founder, Lifestyle Brand</span>
+                            </div>
+                            <div class="testimonial-box">
+                                <p>"I gained clarity, direction, and confidence as a founder."</p>
+                                <span>— Community Builder</span>
+                            </div>
                         </div>
+                    </div>
+                    <div style="margin-top: 40px; text-align: center; border-top: 1px solid #eee; padding-top: 30px;">
+                        <h4 style="font-family: 'Playfair Display';">Build With Strategy, Not Stress</h4>
+                        <p style="margin-bottom: 15px;">Intimate. High-accountability. Application-only.</p>
+                        <a href="https://forms.gle/TqjPJurNRZNyhiY96" class="cta-btn">Request to Join</a>
                     </div>
                 </div>
-                <a href="https://forms.gle/TqjPJurNRZNyhiY96" class="cta-btn" style="margin-top: 30px;">Apply Now</a>
             </div>
         </div>
+    </section>
 
-        <div class="program-card" onclick="toggleProgram(this)">
-            <div class="program-header">
-                <div>
-                    <span style="color:var(--gold); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;">02. LEADERSHIP</span>
-                    <h3>The Exclusive</h3>
-                    <p>For women stepping into leadership or preparing for it.</p>
+    <section id="events" style="background-color: #fffaf9;">
+        <div class="container">
+            <h2>Upcoming Events</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 15px;">✨</span>
+                    <h3>Vision & Alignment Workshop</h3>
+                    <p>A guided experience to reset direction, refine goals, and design your next 12 months with intention.</p>
+                    <a href="mailto:HerAmbition.community@gmail.com" class="cta-btn gold" style="margin-top:20px; font-size: 0.75rem;">Contact Us</a>
                 </div>
-                <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
-            </div>
-            <div class="program-details">
-                <div class="program-meta">
-                    <div>
-                        <strong>Focus:</strong>
-                        <ul class="program-list">
-                            <li>Executive presence</li>
-                            <li>Communication & authority</li>
-                            <li>Managing upward & stakeholder influence</li>
-                            <li>Navigating workplace dynamics</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <strong>What Participants Say:</strong>
-                        <div class="testimonial-box">
-                            <p>"The communication frameworks helped me lead with authority without feeling aggressive. I’ve become more intentional in how I influence decisions."</p>
-                            <span>— Team Lead</span>
-                        </div>
-                        <div class="testimonial-box">
-                            <p>"This program gave me practical tools to manage stakeholders and difficult conversations confidently. It was structured, not just inspirational."</p>
-                            <span>— Operations Manager</span>
-                        </div>
-                    </div>
-                </div>
-                <a href="https://forms.gle/TqjPJurNRZNyhiY96" class="cta-btn" style="margin-top: 30px;">Apply Now</a>
-            </div>
-        </div>
-
-        <div class="program-card" onclick="toggleProgram(this)">
-            <div class="program-header">
-                <div>
-                    <span style="color:var(--gold); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;">03. ENTREPRENEURSHIP</span>
-                    <h3>The FoundHer Circle (Application-Based)</h3>
-                    <p>The Founder’s Chamber - For women entrepreneurs building brands, businesses, or platforms.</p>
-                </div>
-                <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
-            </div>
-            <div class="program-details">
-                <div class="program-meta">
-                    <div>
-                        <strong>Focus:</strong>
-                        <ul class="program-list">
-                            <li>Founder positioning</li>
-                            <li>Strategic decision-making</li>
-                            <li>Visibility & brand authority</li>
-                            <li>Sustainable growth structure</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <strong>What Founders Say:</strong>
-                        <div class="testimonial-box">
-                            <p>"The Founder Circle pushed me to think long-term instead of reacting daily. My business decisions are now rooted in strategy."</p>
-                            <span>— Founder, Lifestyle Brand</span>
-                        </div>
-                        <div class="testimonial-box">
-                            <p>"This wasn’t networking — it was high-level accountability. I gained clarity, direction, and confidence as a founder."</p>
-                            <span>— Community Builder</span>
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top: 40px; text-align: center; border-top: 1px solid #eee; padding-top: 30px;">
-                    <h4 style="font-family: 'Playfair Display';">Build With Strategy, Not Stress</h4>
-                    <p style="margin-bottom: 15px;">Intimate. High-accountability. Application-only.</p>
-                    <a href="https://forms.gle/TqjPJurNRZNyhiY96" class="cta-btn">Request to Join</a>
+                <div class="event-card">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 15px;">✨</span>
+                    <h3>Workplace Strategy Masterclass</h3>
+                    <p>A deep-dive session on navigating visibility, influence, and career progression in competitive environments.</p>
+                    <a href="mailto:HerAmbition.community@gmail.com" class="cta-btn gold" style="margin-top:20px; font-size: 0.75rem;">Contact Us</a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-<section id="events" style="background-color: #fffaf9;">
-    <div class="container">
-        <h2>Upcoming Events</h2>
-        <div class="events-grid">
-            <div class="event-card">
-                <span style="font-size: 2rem; display: block; margin-bottom: 15px;">✨</span>
-                <h3>Vision & Alignment Workshop</h3>
-                <p>A guided experience to reset direction, refine goals, and design your next 12 months with intention.</p>
-                <a href="mailto:HerAmbition.community@gmail.com" class="cta-btn secondary">Contact Us</a>
-            </div>
-            <div class="event-card">
-                <span style="font-size: 2rem; display: block; margin-bottom: 15px;">✨</span>
-                <h3>Workplace Strategy Masterclass</h3>
-                <p>A deep-dive session on navigating visibility, influence, and career progression in competitive environments.</p>
-                <a href="mailto:HerAmbition.community@gmail.com" class="cta-btn secondary">Contact Us</a>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
     <section>
         <div class="container">
             <h2>Meet the Founder</h2>
             <div class="poster-container">
-                <img src="images/founder_banner.jpeg">
+                <img src="images/founder_banner.jpeg" alt="Founder Banner">
             </div>
         </div>
     </section>
@@ -540,27 +578,22 @@
             </div>
 
             <div class="footer-bottom">
-                <p>© 2026 HERAMBITION • BUILT WITH STRATEGY, NOT STRESS.</p>
-                <p>POWERED BY GLOBAL HR STANDARDS</p>
+                <p>© 2026 HERAMBITION • STRATEGY OVER STRESS</p>
+                <p>GLOBAL HR STANDARDS</p>
             </div>
         </div>
     </footer>
 
     <script>
     function toggleProgram(element) {
-        // Find all cards
         const cards = document.querySelectorAll('.program-card');
-        
-        // If the clicked card is already active, just close it
         if (element.classList.contains('active')) {
             element.classList.remove('active');
         } else {
-            // Otherwise, close all other cards and open this one
             cards.forEach(card => card.classList.remove('active'));
             element.classList.add('active');
         }
     }
-</script>
+    </script>
 </body>
 </html>
-
